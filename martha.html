@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tap Game</title>
+<style>
+  body { text-align: center; font-family: sans-serif; }
+  #btn {
+    padding: 30px;
+    font-size: 24px;
+    border-radius: 10px;
+    position: absolute;
+  }
+  #message {
+    font-size: 32px;
+    margin-top: 50px;
+    color: green;
+  }
+</style>
+</head>
+<body>
+
+<h1>Score: <span id="score">0</span></h1>
+<button id="btn">Tap me!</button>
+<div id="message"></div>
+
+<script>
+let score = 0;
+const targetScore = 5; 
+const btn = document.getElementById('btn');
+const scoreDisplay = document.getElementById('score');
+const message = document.getElementById('message');
+
+btn.addEventListener('click', () => {
+  score++;
+  scoreDisplay.textContent = score;
+
+  // Move button
+  btn.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+  btn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+
+  // Check win/lose
+  if(score >= targetScore){
+    message.textContent = "🎉 successful NTANk You !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 🎉";
+    btn.disabled = true; // Hindura button idakanda
+  }
+});
+
+// Optional: timeout for losing
+setTimeout(() => {
+  if(score < targetScore){
+    message.textContent = "failed/ try again ";
+    btn.disabled = true;
+  }
+}, 15000); // 15 seconds game
+</script>
+
+</body>
+</html>
